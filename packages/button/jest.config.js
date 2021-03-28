@@ -4,7 +4,7 @@ const base = require('../../jest.config.base');
 
 module.exports = {
     ...base,
-    testEnvironment: 'jsdom', // This is overriden, from the base testEnvironment
+    testEnvironment: 'jsdom', // This is overridden, from the base testEnvironment
     name: packageJson.name,
     displayName: packageJson.name,
 };

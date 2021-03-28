@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header as DogBookHeader } from '@typescript-monorepo/header';
+import { Header as TypescriptMonorepoHeader } from '@typescript-monorepo/header';
 
 export interface HeaderProps {
     title: string;
@@ -12,5 +12,5 @@ interface ILinks {
 }
 
 export const Header: React.FC<HeaderProps> = ({ title, links }) => {
-    return <DogBookHeader title={title} links={links} />;
+    return <TypescriptMonorepoHeader title={title} links={links} />;
 };

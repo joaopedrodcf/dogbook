@@ -1,0 +1,95 @@
+{
+    "$schema": "./node_modules/@garment/workspace/schemas/config.schema.json",
+    "presets": {
+        "garment-runner-package": {
+            "tasks": {
+                "generate-schema": {
+                    "runner": "typescript-json-schema",
+                    "input": "{{projectDir}}/src/**/index.ts",
+                    "output": ["{{projectDir}}/dist", "{{projectDir}}/src"],
+                    "options": {
+                        "pattern": "*Options"
+                    }
+                }
+            }
+        },
+        "typescript-package": {
+            "tasks": {
+                "clean": {
+                    "runner": "clean",
+                    "skipWatch": true,
+                    "input": {
+                        "include": [
+                            "{{projectDir}}/dist",
+                            "{{projectDir}}/tsconfig.tsbuildinfo"
+                        ]
+                    }
+                },
+                "publish": {
+                    "runner": "publish"
+                },
+                "test": {
+                    "runner": "jest",
+                    "options": {
+                        "configFile": "{{projectDir}}/jest.config.js"
+                    }
+                },
+                "lint": [
+                    {
+                        "runner": "eslint",
+                        "input": "{{projectDir}}/src/**/*.+(t|j)s?(x)",
+                        "output": "{{projectDir}}/src"
+                    },
+                    {
+                        "runner": "stylelint",
+                        "input": "{{projectDir}}/src/**/styles.tsx",
+                        "output": "{{projectDir}}/src"
+                    },
+                    {
+                        "runner": "@typescript-monorepo/plugin-runner-prettier",
+                        "input": "{{projectDir}}/src/**/*.json",
+                        "output": "{{projectDir}}/src",
+                        "options": {
+                            "configFile": ".prettierrc.js"
+                        }
+                    }
+                ],
+                "build": {
+                    "runner": "ts",
+                    "input": "{{projectDir}}/src/**/*.ts?(x)",
+                    "output": "{{projectDir}}/dist",
+                    "options": {
+                        "configFile": "{{projectDir}}/tsconfig.json"
+                    }
+                }
+            }
+        }
+    },
+    "projects": {
+        "app": {
+            "path": "packages/app",
+            "extends": []
+        },
+        "button": {
+            "path": "packages/button",
+            "extends": ["typescript-package"]
+        },
+        "header": {
+            "path": "packages/header",
+            "extends": ["typescript-package"]
+        },
+        "server": {
+            "path": "packages/server",
+            "extends": ["typescript-package"]
+        },
+        "storybook": {
+            "path": "packages/storybook",
+            "extends": ["typescript-package"]
+        },
+        "plugin-runner-prettier": {
+            "path": "packages/plugin-runner-prettier",
+            "extends": ["garment-runner-package"]
+        }
+    },
+    "schematics": []
+}

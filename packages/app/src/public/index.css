@@ -2,6 +2,12 @@ html {
     /* font-size:62.5%; */
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
 html * {
     box-sizing: border-box;
     margin: 0;
@@ -18,12 +24,6 @@ html,
 body {
     display: flex;
     flex-direction: column;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
 }
 
 a {

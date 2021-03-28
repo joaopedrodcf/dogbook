@@ -60,6 +60,30 @@ Followed the config of https://github.com/pmmmwh/react-refresh-webpack-plugin/tr
 
 As developing a monorepo is fundamental to be able to start your components in isolation instead of the main app in this repo we included a way for you to start the storybook and change your components and see changes in real time!
 
+## Garment
+
+This project uses garment which is a task runner that speeds up development of teams working in a monorepo.
+
+```
+"garment-runner-package": {
+            "tasks": {
+                "generate-schema": {
+                    "runner": "typescript-json-schema",
+                    "input": "{{projectDir}}/src/**/index.ts",
+                    "output": ["{{projectDir}}/dist", "{{projectDir}}/src"],
+                    "options": {
+                        "pattern": "*Options"
+                    }
+                },
+                "build": {
+                    "ref": "typescript-package:build",
+                    "next": ":generate-schema"
+                }
+            }
+        },
+```
+
+
 ## Important commands of the repo
 
 Run all the commands from the root folder
@@ -83,6 +107,9 @@ yarn lint
 ```
 yarn storybook
 ```
+
+### Garment task runner
+
 
 ## Biography
 

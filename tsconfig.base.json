@@ -18,6 +18,7 @@
         "types": [],
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "jsxImportSource": "@emotion/react"
+        "jsxImportSource": "@emotion/react",
+        "resolveJsonModule": true
     }
 }

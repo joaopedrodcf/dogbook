@@ -1,0 +1,23 @@
+{
+    "name": "@typescript-monorepo/plugin-runner-prettier",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "private": true,
+    "scripts": {
+        "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
+        "build": "tsc -b"
+    },
+    "peerDependencies": {
+        "@garment/runner": "^0.15.4",
+        "prettier": "^5.15.3"
+    },
+    "devDependencies": {
+        "@garment/fixture-helper": "^0.15.4",
+        "@types/prettier": "^2.2.3",
+        "prettier": "^2.2.1"
+    }
+}

@@ -8,6 +8,7 @@
     ],
     "private": true,
     "scripts": {
+        "build": "tsc -b",
         "docs:dev": "tsc -b -w --preserveWatchOutput",
         "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo"
     },
