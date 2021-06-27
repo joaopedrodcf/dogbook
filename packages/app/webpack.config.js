@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin =
+    require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -32,6 +32,7 @@ module.exports = (env, argv) => {
                     test: /\.js$/,
                     enforce: 'pre',
                     loader: 'source-map-loader',
+                    exclude: /node_modules/, // prevent error: failed to parse source map
                 },
                 {
                     test: /\.tsx?$/,

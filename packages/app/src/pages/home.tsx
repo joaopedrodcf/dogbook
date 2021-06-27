@@ -1,19 +1,36 @@
-import { Button } from '@typescript-monorepo/button';
+import { gql, useQuery } from '@apollo/client';
 import React from 'react';
 
-export const Home: React.FC = () => {
-    return (
-        <div>
-            Home
-            <div>
-                <Button>my monorepo button</Button>
+const GET_POKEMON_DETAILS = gql`
+    {
+        pokemons(limit: 150, offset: 0) {
+            results {
+                url
+                name
+                image
+            }
+        }
+    }
+`;
 
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/English_Cocker_Spaniel_black_portrait.jpg/600px-English_Cocker_Spaniel_black_portrait.jpg"
-                    alt="test"
-                />
-            </div>
-        </div>
+export const Home: React.FC = () => {
+    const { loading, error, data } = useQuery(GET_POKEMON_DETAILS);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+    console.log(
+        '🚀 ~ file: home.tsx ~ line 23 ~ returndata.pokemons.results.map ~ data.pokemons.results',
+        data.pokemons.results
+    );
+
+    return (
+        <ul>
+            {data.pokemons.results.map((x: any) => (
+                <div key={x.name}>
+                    <p>{x.name}</p>
+                    <img src={x.image} alt={x.name} />
+                </div>
+            ))}
+        </ul>
     );
 };
 

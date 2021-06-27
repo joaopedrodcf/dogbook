@@ -4,8 +4,14 @@ import compression from 'compression';
 import ReactDOMServer from 'react-dom/server';
 import { App } from '@typescript-monorepo/app';
 import { StaticRouter } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import * as fs from 'fs';
 import * as path from 'path';
+
+const client = new ApolloClient({
+    uri: 'https://48p1r2roz4.sse.codesandbox.io',
+    cache: new InMemoryCache(),
+});
 
 export function createHttpServer(): express.Express {
     const app = express();
@@ -22,9 +28,11 @@ function ssrHandler(req: express.Request, res: express.Response) {
     const indexFile = path.resolve('../app/dist/index.html');
 
     const app = ReactDOMServer.renderToString(
-        <StaticRouter location={req.url} context={{}}>
-            <App />
-        </StaticRouter>
+        <ApolloProvider client={client}>
+            <StaticRouter location={req.url} context={{}}>
+                <App />
+            </StaticRouter>{' '}
+        </ApolloProvider>
     );
 
     fs.readFile(indexFile, 'utf8', (err: any, data: any) => {
