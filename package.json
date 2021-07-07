@@ -25,7 +25,7 @@
         "@types/jest": "26.0.23",
         "@types/node": "15.3.1",
         "@types/react": "17.0.1",
-        "@types/react-dom": "17.0.1",
+        "@types/react-dom": "17.0.9",
         "@types/react-router": "5.1.15",
         "@types/react-router-dom": "5.1.7",
         "@typescript-eslint/eslint-plugin": "4.28.0",
@@ -65,7 +65,7 @@
     },
     "resolutions": {
         "@types/react": "17.0.1",
-        "@types/react-dom": "17.0.1"
+        "@types/react-dom": "17.0.9"
     },
     "scripts": {
         "start": "yarn workspace @typescript-monorepo/app start",
